@@ -18,14 +18,14 @@ const socialLinks = [
   <div class="section-pad !py-6 sm:!py-8 md:!px-10 lg:!py-10">
     <div class="mx-auto max-w-6xl">
       <div
-        class="flex flex-col items-center gap-8 text-center lg:grid lg:grid-cols-[auto_minmax(17rem,1.5fr)_minmax(0,0.8fr)_minmax(0,0.8fr)] lg:items-start lg:gap-x-10 lg:text-left xl:gap-x-14"
+        class="flex flex-col items-center gap-6 text-center lg:grid lg:grid-cols-[auto_minmax(17rem,1.5fr)_minmax(0,0.8fr)_minmax(0,0.8fr)] lg:items-start lg:gap-8 lg:gap-x-10 lg:text-left xl:gap-x-14"
       >
       <a
         href="/"
-        class="flex min-w-0 items-center justify-center gap-2.5 leading-none text-surface sm:gap-3 lg:hidden"
+        class="footer-brand-lockup flex min-w-0 items-center justify-center gap-2.5 pb-0 leading-none text-surface sm:gap-3 lg:hidden"
       >
         <span
-          class="icon-surface-mask icon-surface-mask--logo-van h-12 w-[4.75rem] shrink-0 sm:h-14 sm:w-[5.5rem] md:h-16 md:w-[6.25rem]"
+          class="icon-surface-mask icon-surface-mask--logo-van h-[3.375rem] w-[5.25rem] shrink-0 sm:h-[3.875rem] sm:w-[6rem] md:h-[4.25rem] md:w-[6.75rem]"
           aria-hidden="true"
         />
         <span class="min-w-0 text-left">
@@ -36,13 +36,13 @@ const socialLinks = [
         </span>
       </a>
 
-      <div class="footer-brand-block hidden w-full min-w-0 shrink-0 lg:block lg:w-auto">
+      <div class="footer-brand-block footer-brand-block--lg hidden w-full min-w-0 shrink-0 pb-0 lg:block lg:w-auto">
         <div class="flex items-center justify-start gap-2 sm:gap-2.5">
           <span class="type-footer-brand leading-none">AT</span>
           <img
             src="/images/logo.png"
             alt=""
-            class="logo-on-brand relative -top-1 h-9 w-auto shrink-0 sm:h-10 lg:-top-2 lg:h-[3.25rem] xl:h-[3.75rem]"
+            class="logo-on-brand relative -top-1 h-9 w-auto shrink-0 sm:h-10 lg:-top-2 lg:h-[3.5rem] xl:h-[4rem]"
             width="120"
             height="48"
             decoding="async"
@@ -135,14 +135,18 @@ const socialLinks = [
             {
               socialLinks.map((link) => (
                 <li>
-                  <a
-                    href={link.href}
-                    class="hover:opacity-80"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {link.label}
-                  </a>
+                  {link.href ? (
+                    <a
+                      href={link.href}
+                      class="hover:opacity-80"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <span class="text-surface/60">{link.label}</span>
+                  )}
                 </li>
               ))
             }
@@ -154,7 +158,7 @@ const socialLinks = [
       <hr class="mt-8 border-surface/25 lg:mt-10" />
 
       <div
-        class="flex flex-col items-center gap-2 pt-3 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left"
+        class="flex flex-col items-center gap-2 pt-4 text-center sm:flex-row sm:items-end sm:justify-between sm:pt-5 sm:text-left lg:pt-5"
       >
       <p class="type-caption leading-snug">
         <span class="block lg:inline">© {new Date().getFullYear()} {site.name}.</span>{" "}
@@ -168,7 +172,7 @@ const socialLinks = [
           width="150"
           height="150"
           decoding="async"
-          class="footer-dog-walk pointer-events-none absolute -top-[4.5rem] left-0 h-[50px] w-[50px] sm:-top-8 md:-top-12 lg:-top-8 [image-rendering:pixelated]"
+          class="footer-dog-walk pointer-events-none absolute -top-[5rem] left-0 h-[50px] w-[50px] sm:-top-10 md:-top-14 lg:-top-10 [image-rendering:pixelated]"
         />
         <nav
           class="type-caption flex flex-nowrap items-center justify-center gap-x-4 sm:justify-end"
@@ -189,6 +193,50 @@ const socialLinks = [
 </footer>
 
 <style>
+  .footer-brand-lockup .type-logo-display {
+    font-size: 1.5rem;
+  }
+
+  .footer-brand-lockup .type-logo-tagline {
+    font-size: 0.8125rem;
+  }
+
+  @media (min-width: 640px) {
+    .footer-brand-lockup .type-logo-display {
+      font-size: 1.8rem;
+    }
+
+    .footer-brand-lockup .type-logo-tagline {
+      font-size: 0.9375rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .footer-brand-lockup .type-logo-display {
+      font-size: 2.4rem;
+    }
+
+    .footer-brand-lockup .type-logo-tagline {
+      font-size: 1.0625rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-brand-block--lg .type-footer-brand {
+      font-size: clamp(2.75rem, 9vw, 3.4rem);
+    }
+
+    .footer-brand-block--lg .type-logo-tagline {
+      font-size: 1.0625rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .footer-brand-block--lg .type-footer-brand {
+      font-size: 4.85rem;
+    }
+  }
+
   .footer-dog-walk {
     transform: translateY(-50%) translateX(0) scaleX(-1);
     transform-origin: center center;

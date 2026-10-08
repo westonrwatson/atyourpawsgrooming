@@ -14,9 +14,10 @@ export const site = {
   serviceAreaShort:
     "Madera, Fresno, Clovis, Visalia, Selma, and surrounding Central Valley communities",
   social: {
-    facebook: "https://www.facebook.com/",
-    instagram: "https://www.instagram.com/",
-    linkedin: "https://www.linkedin.com/",
-    x: "https://x.com/",
+    facebook:
+      "https://www.facebook.com/p/At-Your-Paws-Mobile-Pet-Grooming-61577386511978/",
+    instagram: "https://www.instagram.com/atyourpaws/",
+    linkedin: "",
+    x: "",
   },
 } as const;
