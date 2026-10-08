@@ -53,13 +53,9 @@ const steps = [
               }
               {
                 step.icon === "van" && (
-                  <img
-                    src="/images/logo.png"
-                    alt=""
-                    class="h-[3.25rem] w-auto max-w-full object-contain"
-                    width="120"
-                    height="48"
-                    decoding="async"
+                  <span
+                    class="icon-ink-mask icon-ink-mask--logo-van h-[3.25rem] w-[5rem] max-w-full"
+                    aria-hidden="true"
                   />
                 )
               }
@@ -68,9 +64,10 @@ const steps = [
                   <img
                     src="/images/how-it-works-dog.png"
                     alt=""
-                    class="h-[4rem] w-[4rem] object-contain grayscale"
+                    class="h-[4rem] w-[4rem] object-contain"
                     width="112"
                     height="112"
+                    loading="lazy"
                     decoding="async"
                   />
                 )

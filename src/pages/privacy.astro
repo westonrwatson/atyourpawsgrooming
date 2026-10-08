@@ -1,0 +1,76 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { site } from "../data/site";
+---
+
+<LegalLayout
+  title="Privacy Policy"
+  description={`Privacy policy for ${site.name}.`}
+>
+  <p>
+    {site.name} ("we," "us," or "our") respects your privacy. This policy explains how we
+    collect, use, and protect information when you visit our website or book mobile
+    grooming services.
+  </p>
+
+  <h2>Information we collect</h2>
+  <p>We may collect information you provide directly, including:</p>
+  <ul>
+    <li>Name, phone number, email address, and service address</li>
+    <li>Pet details (breed, age, temperament, grooming notes)</li>
+    <li>Appointment preferences and messages you send us</li>
+    <li>Payment-related information processed by our booking or payment partners</li>
+  </ul>
+  <p>
+    We may also collect basic technical data such as browser type, device information, and
+    pages visited to improve our website.
+  </p>
+
+  <h2>How we use information</h2>
+  <ul>
+    <li>Schedule and deliver grooming appointments</li>
+    <li>Communicate about visits, safety, and follow-up care</li>
+    <li>Improve our website and customer experience</li>
+    <li>Comply with legal obligations</li>
+  </ul>
+
+  <h2>Sharing</h2>
+  <p>
+    We do not sell your personal information. We may share data with trusted service
+    providers (such as online booking platforms, email, or payment processors) only as
+    needed to operate our business.
+  </p>
+
+  <h2>Retention & security</h2>
+  <p>
+    We retain information only as long as needed for the purposes above. We use reasonable
+    administrative and technical safeguards, though no method of transmission over the
+    internet is completely secure.
+  </p>
+
+  <h2>Your choices</h2>
+  <p>
+    You may request access, correction, or deletion of your information by contacting us
+    at <a href={`mailto:${site.email}`}>{site.email}</a> or{" "}
+    <a href={site.phoneHref}>{site.phone}</a>.
+  </p>
+
+  <h2>Children</h2>
+  <p>
+    Our services are directed to pet owners and are not intended for children under 13. We
+    do not knowingly collect information from children.
+  </p>
+
+  <h2>Changes</h2>
+  <p>
+    We may update this policy from time to time. The "Last updated" date at the top of
+    this page will reflect the latest version.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    Questions about this policy? Email{" "}
+    <a href={`mailto:${site.email}`}>{site.email}</a> or call{" "}
+    <a href={site.phoneHref}>{site.phone}</a>.
+  </p>
+</LegalLayout>

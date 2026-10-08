@@ -12,7 +12,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Which areas do you serve?",
     answer:
-      "We serve Madera, Fresno, Clovis, Visalia, Selma, Fowler, Kerman, Kingsburg, Orange Cove, Reedley, Dinuba, Tulare, Hanford, Saner, Parlier, and nearby Central Valley communities.",
+      "We serve Madera, Fresno, Clovis, Visalia, Selma, Fowler, Kerman, Kingsburg, Orange Cove, Reedley, Dinuba, Tulare, Hanford, Sanger, Parlier, and nearby Central Valley communities.",
   },
   {
     question: "Do you groom both dogs and cats?",

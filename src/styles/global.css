@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #28262c;
-  --color-ink-dark: #1f1d22;
+  --color-navy: #0a1628;
+  --color-ink: #0a1628;
+  --color-ink-dark: #061018;
   --color-surface: #f2f4f3;
   --color-brand: #108aaa;
   --color-brand-dark: #0d7894;
@@ -16,8 +17,8 @@
   --color-blue-brand: #108aaa;
   --color-blue-brand-dark: #0d7894;
   --color-blue-primary: #108aaa;
-  --color-blue-dark: #28262c;
-  --color-blue-stats: #28262c;
+  --color-blue-dark: #0a1628;
+  --color-blue-stats: #0a1628;
   --color-blue-footer: #0a6578;
   --color-orange-cta: #108aaa;
   --color-orange-cta-dark: #0d7894;
@@ -26,6 +27,8 @@
   --color-cream: #f2f4f3;
   --font-display: "Luckiest Guy", cursive;
   --font-body: "Poppins", system-ui, sans-serif;
+  /* Paragraph subheads under section titles (was mostly max-w-2xl / 42rem) */
+  --max-width-lead: 48rem;
 }
 
 html {
@@ -78,7 +81,7 @@ h3 {
 .btn-brand {
   background-color: var(--color-brand);
   color: var(--color-surface);
-  font-weight: 400;
+  font-weight: 600;
   transition: background-color 0.2s ease;
 }
 
@@ -142,6 +145,11 @@ h3 {
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.65;
+}
+
+.btn-brand,
+.btn-cta {
+  font-weight: 600;
 }
 
 .type-small {
@@ -279,6 +287,41 @@ h3 {
   filter: brightness(0) invert(1);
 }
 
+/* PNG silhouettes / icons tinted with brand navy (--color-ink) */
+.icon-ink-mask {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: var(--color-ink);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.icon-ink-mask--logo-van {
+  mask-image: url("/images/logo.png");
+  -webkit-mask-image: url("/images/logo.png");
+}
+
+.icon-surface-mask {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: var(--color-surface);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.icon-surface-mask--logo-van {
+  mask-image: url("/images/logo.png");
+  -webkit-mask-image: url("/images/logo.png");
+}
+
 .type-footer-heading {
   font-family: var(--font-body);
   font-size: 1rem;
@@ -310,6 +353,7 @@ h3 {
   border-radius: 9999px;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1.25;
   transition:
     background-color 0.2s ease,
@@ -320,5 +364,27 @@ h3 {
   .btn-cta {
     width: auto;
     max-width: none;
+  }
+}
+
+/* Fade/slide sections in as they enter the viewport */
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }

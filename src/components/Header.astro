@@ -1,12 +1,8 @@
 ---
 import { site } from "../data/site";
+import { mainNavLinks } from "../data/navigation";
 
-const navLinks = [
-  { href: "#home", label: "Home", active: true },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#services", label: "Prices" },
-];
+const navLinks = mainNavLinks;
 ---
 
 <header class="sticky top-0 z-50 border-b border-ink/5 bg-surface/95 backdrop-blur-sm">
@@ -15,16 +11,12 @@ const navLinks = [
       class="relative z-[60] mx-auto grid max-w-6xl grid-cols-[1fr_auto] items-center gap-3"
     >
     <a
-      href="#home"
+      href="/"
       class="flex min-w-0 items-center gap-2.5 justify-self-start leading-none text-ink sm:gap-3"
     >
-      <img
-        src="/images/logo.png"
-        alt=""
-        class="h-12 w-auto shrink-0 sm:h-14 md:h-16"
-        width="160"
-        height="64"
-        decoding="async"
+      <span
+        class="icon-ink-mask icon-ink-mask--logo-van h-12 w-[4.75rem] sm:h-14 sm:w-[5.5rem] md:h-16 md:w-[6.25rem]"
+        aria-hidden="true"
       />
       <span class="min-w-0">
         <span class="type-logo-display block">AT YOUR PAWS</span>
@@ -34,15 +26,23 @@ const navLinks = [
       </span>
     </a>
 
-    <div class="hidden items-center justify-end gap-8 md:flex">
-      <nav class="flex items-center justify-end gap-8" aria-label="Main">
+    <div class="hidden items-center justify-end gap-8 lg:flex">
+      <nav
+        id="main-nav"
+        class="main-nav relative flex items-center justify-end gap-8"
+        aria-label="Main"
+      >
+        <span id="nav-underline" class="nav-underline" aria-hidden="true"></span>
         {
           navLinks.map((link) => (
             <a
               href={link.href}
+              data-nav-link
+              data-section={link.section}
+              data-nav-id={link.navId}
               class:list={[
-                "type-body text-ink",
-                link.active && "nav-link-active",
+                "nav-link type-body text-ink",
+                link.navId === "home" && "is-active",
               ]}
             >
               {link.label}
@@ -55,7 +55,7 @@ const navLinks = [
         href={site.bookingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-brand type-body inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-7 py-2.5 font-normal"
+        class="btn-brand type-body inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-7 py-2.5"
       >
         Book Appointment
       </a>
@@ -64,7 +64,7 @@ const navLinks = [
     <button
       type="button"
       id="menu-toggle"
-      class="menu-toggle relative flex h-11 w-11 shrink-0 items-center justify-center md:hidden"
+      class="menu-toggle relative flex h-11 w-11 shrink-0 items-center justify-center lg:hidden"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Open menu"
@@ -80,7 +80,7 @@ const navLinks = [
 
   <div
     id="mobile-menu"
-    class="mobile-menu fixed inset-0 z-[55] flex min-h-dvh flex-col bg-surface md:hidden"
+    class="mobile-menu fixed inset-0 z-[55] flex min-h-dvh flex-col bg-surface lg:hidden"
     aria-hidden="true"
   >
     <nav
@@ -91,10 +91,10 @@ const navLinks = [
         navLinks.map((link) => (
           <a
             href={link.href}
-            class:list={[
-              "mobile-nav-link section-heading font-normal text-ink",
-              link.active && "nav-link-active",
-            ]}
+            data-nav-link
+            data-section={link.section}
+            data-nav-id={link.navId}
+            class="mobile-nav-link nav-link section-heading font-normal text-ink"
           >
             {link.label}
           </a>
@@ -183,15 +183,57 @@ const navLinks = [
   .mobile-menu.is-open .mobile-menu-nav .mobile-nav-link:nth-child(4) {
     animation-delay: 0.26s;
   }
+  .mobile-menu.is-open .mobile-menu-nav .mobile-nav-link:nth-child(5) {
+    animation-delay: 0.32s;
+  }
 
   .mobile-menu.is-open .mobile-menu-cta .mobile-nav-link {
-    animation-delay: 0.32s;
+    animation-delay: 0.38s;
   }
 
   @keyframes mobile-nav-in {
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  .main-nav .nav-underline {
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    height: 1px;
+    width: 0;
+    opacity: 0;
+    background-color: var(--color-brand);
+    pointer-events: none;
+    transition: none;
+  }
+
+  .main-nav .nav-underline.is-placed {
+    opacity: 1;
+  }
+
+  .main-nav .nav-underline.is-animated {
+    transition:
+      left 0.28s ease,
+      width 0.28s ease;
+  }
+
+  .main-nav .nav-link {
+    text-decoration: none;
+  }
+
+  .nav-link.is-active {
+    color: var(--color-ink);
+  }
+
+  @media (max-width: 1023px) {
+    .nav-link.is-active {
+      text-decoration: underline;
+      text-decoration-color: var(--color-brand);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 6px;
     }
   }
 </style>
@@ -216,4 +258,172 @@ const navLinks = [
   document.querySelectorAll(".mobile-nav-link").forEach((link) => {
     link.addEventListener("click", () => setMenuOpen(false));
   });
+
+  const mainNav = document.getElementById("main-nav");
+  const navUnderline = document.getElementById("nav-underline");
+  const navLinksEls = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"),
+  );
+  const desktopNavLinks = Array.from(
+    mainNav?.querySelectorAll<HTMLAnchorElement>("[data-nav-link]") ?? [],
+  );
+
+  const spySections = ["home", "services", "about"] as const;
+  const isHomePage =
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("/index.html");
+  let activeNavId = "home";
+  /** Holds clicked nav during smooth scroll so spy does not flash intermediate sections. */
+  let lockedNavId: string | null = null;
+  let scrollUnlockTimer: ReturnType<typeof setTimeout> | undefined;
+
+  function linkForNavId(navId: string) {
+    return (
+      navLinksEls.find((link) => link.dataset.navId === navId) ??
+      navLinksEls.find((link) => link.dataset.section === navId)
+    );
+  }
+
+  function moveUnderline(link: HTMLAnchorElement, animate = false) {
+    if (!mainNav || !navUnderline || !window.matchMedia("(min-width: 1024px)").matches) {
+      return;
+    }
+
+    navUnderline.classList.toggle("is-animated", animate);
+
+    const navRect = mainNav.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    navUnderline.style.width = `${linkRect.width}px`;
+    navUnderline.style.left = `${linkRect.left - navRect.left}px`;
+    navUnderline.classList.add("is-placed");
+  }
+
+  function setActiveNav(navId: string, animate = false) {
+    activeNavId = navId;
+
+    navLinksEls.forEach((link) => {
+      link.classList.toggle("is-active", link.dataset.navId === navId);
+    });
+
+    const desktopLink = desktopNavLinks.find(
+      (link) => link.dataset.navId === navId,
+    );
+    if (desktopLink) {
+      moveUnderline(desktopLink, animate);
+    }
+  }
+
+  function activeNavIdFromScroll() {
+    const offset = (document.querySelector("header")?.offsetHeight ?? 0) + 96;
+    const y = window.scrollY + offset;
+    let section = spySections[0];
+
+    for (const id of spySections) {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= y) {
+        section = id;
+      }
+    }
+
+    return section;
+  }
+
+  function updateFromScroll(animate = false) {
+    if (!isHomePage || lockedNavId) return;
+    setActiveNav(activeNavIdFromScroll(), animate);
+  }
+
+  function navIdFromHash() {
+    const id = window.location.hash.replace("#", "");
+    if (spySections.includes(id as (typeof spySections)[number])) return id;
+    return null;
+  }
+
+  function initNavFromPage() {
+    const path = window.location.pathname.replace(/\/$/, "") || "/";
+
+    if (path === "/privacy" || path === "/terms") {
+      navLinksEls.forEach((link) => link.classList.remove("is-active"));
+      navUnderline?.classList.remove("is-placed", "is-animated");
+      return;
+    }
+
+    if (path === "/pricing") {
+      setActiveNav("prices", false);
+      return;
+    }
+
+    if (path === "/gallery") {
+      setActiveNav("gallery", false);
+      return;
+    }
+
+    if (!isHomePage) {
+      setActiveNav("home", false);
+      return;
+    }
+
+    const navId = navIdFromHash() ?? activeNavIdFromScroll();
+    setActiveNav(navId, false);
+  }
+
+  function scheduleScrollUnlock() {
+    if (!lockedNavId) return;
+    if (scrollUnlockTimer) clearTimeout(scrollUnlockTimer);
+    scrollUnlockTimer = window.setTimeout(() => {
+      lockedNavId = null;
+      updateFromScroll();
+    }, 200);
+  }
+
+  navLinksEls.forEach((link) => {
+    link.addEventListener("click", () => {
+      const href = link.getAttribute("href") ?? "";
+      const navId = link.dataset.navId ?? "home";
+      const isSamePageHash =
+        isHomePage && (href.startsWith("#") || href.startsWith("/#"));
+
+      if (!isSamePageHash) {
+        return;
+      }
+
+      lockedNavId = navId;
+      setActiveNav(navId, true);
+      scheduleScrollUnlock();
+    });
+  });
+
+  if (isHomePage) {
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (lockedNavId) {
+          scheduleScrollUnlock();
+          return;
+        }
+        updateFromScroll();
+      },
+      { passive: true },
+    );
+
+    if ("onscrollend" in window) {
+      window.addEventListener("scrollend", () => {
+        if (!lockedNavId) return;
+        if (scrollUnlockTimer) clearTimeout(scrollUnlockTimer);
+        lockedNavId = null;
+        updateFromScroll();
+      });
+    }
+  }
+  window.addEventListener("resize", () => {
+    const activeLink = linkForNavId(activeNavId);
+    if (activeLink && desktopNavLinks.includes(activeLink)) {
+      moveUnderline(activeLink, false);
+    }
+  });
+
+  window.addEventListener("load", () => initNavFromPage());
+
+  initNavFromPage();
+  requestAnimationFrame(() => initNavFromPage());
 </script>

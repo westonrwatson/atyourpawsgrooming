@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+import { galleryImages } from "../data/gallery";
+
+const galleryIntro =
+  "Happy pets, fresh grooms, and our mobile salon on the road across the Central Valley.";
+---
+
+<BaseLayout
+  title={`Gallery | ${site.name}`}
+  description="Photos from mobile pet grooming visits across California's Central Valley."
+>
+  <div class="flex min-h-screen flex-col bg-surface">
+    <Header />
+    <main class="flex-1">
+      <section class="section-pad bg-surface md:!px-10 md:!py-20">
+        <div class="mx-auto max-w-6xl">
+          <div class="mx-auto max-w-3xl text-center">
+            <h1 class="section-heading text-ink">Gallery</h1>
+            <p class="type-lead mx-auto mt-4 max-w-lead text-ink/90">{galleryIntro}</p>
+          </div>
+
+          <div class="mt-10 grid grid-cols-1 gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+            {
+              galleryImages.map((item) => (
+                <figure class="overflow-hidden rounded-2xl shadow-lg sm:rounded-3xl">
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    class="aspect-[4/3] w-full object-cover object-center lg:aspect-square"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="683"
+                  />
+                </figure>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+import { site } from "../data/site";
+---
+
+<LegalLayout
+  title="Terms of Service"
+  description={`Terms of service for ${site.name}.`}
+>
+  <p>
+    By using the {site.name} website or booking our mobile grooming services, you agree to
+    these Terms of Service. If you do not agree, please do not use our services.
+  </p>
+
+  <h2>Services</h2>
+  <p>
+    We provide mobile pet grooming at your location within our service area. Grooming
+    results may vary based on coat condition, behavior, and health. We reserve the right
+    to refuse or stop service if a pet's safety or welfare is at risk.
+  </p>
+
+  <h2>Appointments & cancellations</h2>
+  <ul>
+    <li>Appointments are confirmed when you receive confirmation from our team or booking system.</li>
+    <li>Please provide accurate contact, address, and pet information.</li>
+    <li>
+      Cancellations or reschedules should be made as early as possible. Repeated late
+      cancellations may affect future booking availability.
+    </li>
+  </ul>
+
+  <h2>Pricing & payment</h2>
+  <p>
+    Published prices are starting estimates. Final pricing depends on breed, size, coat
+    condition, and add-ons. Payment terms are provided at booking or at the time of
+    service, as applicable.
+  </p>
+
+  <h2>Pet health & behavior</h2>
+  <p>
+    You agree to disclose known health issues, allergies, injuries, or aggressive behavior
+    before the appointment. We may require veterinary clearance for certain conditions.
+    You are responsible for ensuring pets are current on required vaccinations where
+    applicable.
+  </p>
+
+  <h2>Liability</h2>
+  <p>
+    To the fullest extent permitted by law, {site.name} is not liable for indirect or
+    incidental damages arising from use of our website or services. Our liability for any
+    claim related to a grooming visit is limited to the amount paid for that visit, except
+    where prohibited by law.
+  </p>
+
+  <h2>Website use</h2>
+  <p>
+    Website content is for general information and may change without notice. You may not
+    misuse the site, attempt unauthorized access, or copy materials without permission.
+  </p>
+
+  <h2>Governing law</h2>
+  <p>
+    These terms are governed by the laws of the State of California, without regard to
+    conflict-of-law rules.
+  </p>
+
+  <h2>Contact</h2>
+  <p>
+    For questions about these terms, contact{" "}
+    <a href={`mailto:${site.email}`}>{site.email}</a> or{" "}
+    <a href={site.phoneHref}>{site.phone}</a>.
+  </p>
+</LegalLayout>

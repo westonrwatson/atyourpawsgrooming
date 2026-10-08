@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  lead?: string;
+}
+
+const { title, lead } = Astro.props;
+---
+
+<section class="section-pad bg-brand-soft md:!px-10 md:!py-16">
+  <div class="mx-auto max-w-6xl text-center">
+    <h1 class="section-heading text-ink">{title}</h1>
+    {lead && <p class="type-lead mx-auto mt-4 max-w-lead text-ink/90">{lead}</p>}
+  </div>
+</section>

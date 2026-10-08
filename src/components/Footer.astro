@@ -1,17 +1,7 @@
 ---
+import PreFooterCta from "./PreFooterCta.astro";
 import { site } from "../data/site";
-
-const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#services", label: "Prices" },
-];
-
-const legalLinks = [
-  { href: "#", label: "Privacy Policy" },
-  { href: "#", label: "Terms of Service" },
-];
+import { footerNavLinks, legalLinks } from "../data/navigation";
 
 const socialLinks = [
   { href: site.social.facebook, label: "Facebook" },
@@ -21,15 +11,32 @@ const socialLinks = [
 ];
 ---
 
-<footer class="bg-brand-soft px-4 pb-5 pt-4 md:px-10 md:pb-6">
-  <div
-    class="mx-auto max-w-6xl rounded-2xl bg-brand px-6 pt-6 pb-6 text-surface sm:rounded-3xl sm:px-8 sm:pt-8 sm:pb-7 lg:px-10 lg:pt-10 lg:pb-8"
-  >
-    <div
-      class="flex flex-col items-center gap-8 text-center lg:grid lg:grid-cols-[auto_minmax(17rem,1.5fr)_minmax(0,0.8fr)_minmax(0,0.8fr)] lg:items-start lg:gap-x-10 lg:text-left xl:gap-x-14"
-    >
-      <div class="footer-brand-block w-full min-w-0 shrink-0 lg:w-auto">
-        <div class="flex items-center justify-center gap-2 sm:gap-2.5 lg:justify-start">
+<PreFooterCta />
+
+<footer class="w-full bg-brand text-surface">
+  <div class="section-pad !py-6 sm:!py-8 md:!px-10 lg:!py-10">
+    <div class="mx-auto max-w-6xl">
+      <div
+        class="flex flex-col items-center gap-8 text-center lg:grid lg:grid-cols-[auto_minmax(17rem,1.5fr)_minmax(0,0.8fr)_minmax(0,0.8fr)] lg:items-start lg:gap-x-10 lg:text-left xl:gap-x-14"
+      >
+      <a
+        href="/"
+        class="flex min-w-0 items-center justify-center gap-2.5 leading-none text-surface sm:gap-3 lg:hidden"
+      >
+        <span
+          class="icon-surface-mask icon-surface-mask--logo-van h-12 w-[4.75rem] shrink-0 sm:h-14 sm:w-[5.5rem] md:h-16 md:w-[6.25rem]"
+          aria-hidden="true"
+        />
+        <span class="min-w-0 text-left">
+          <span class="type-logo-display block">AT YOUR PAWS</span>
+          <span class="type-logo-tagline -mt-0.5 block tracking-normal text-surface/95">
+            Mobile Pet Grooming
+          </span>
+        </span>
+      </a>
+
+      <div class="footer-brand-block hidden w-full min-w-0 shrink-0 lg:block lg:w-auto">
+        <div class="flex items-center justify-start gap-2 sm:gap-2.5">
           <span class="type-footer-brand leading-none">AT</span>
           <img
             src="/images/logo.png"
@@ -122,7 +129,7 @@ const socialLinks = [
           <p class="type-footer-heading">Nav</p>
           <ul class="type-footer-text mt-2 space-y-2">
             {
-              navLinks.map((link) => (
+              footerNavLinks.map((link) => (
                 <li>
                   <a href={link.href} class="hover:opacity-80">
                     {link.label}
@@ -152,13 +159,13 @@ const socialLinks = [
           </ul>
         </div>
       </div>
-    </div>
+      </div>
 
-    <hr class="mt-8 border-surface/25 lg:mt-10" />
+      <hr class="mt-8 border-surface/25 lg:mt-10" />
 
-    <div
-      class="flex flex-col items-center gap-2 pt-3 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left"
-    >
+      <div
+        class="flex flex-col items-center gap-2 pt-3 text-center sm:flex-row sm:items-end sm:justify-between sm:text-left"
+      >
       <p class="type-caption leading-snug">
         <span class="block lg:inline">© {new Date().getFullYear()} {site.name}.</span>{" "}
         <span class="block lg:inline">All rights reserved.</span>
@@ -171,7 +178,7 @@ const socialLinks = [
           width="150"
           height="150"
           decoding="async"
-          class="footer-dog-walk pointer-events-none absolute -top-[4.5rem] left-0 h-[50px] w-[50px] sm:-top-8 [image-rendering:pixelated]"
+          class="footer-dog-walk pointer-events-none absolute -top-[4.5rem] left-0 h-[50px] w-[50px] sm:-top-8 md:-top-12 lg:-top-8 [image-rendering:pixelated]"
         />
         <nav
           class="type-caption flex flex-nowrap items-center justify-center gap-x-4 sm:justify-end"
@@ -185,6 +192,7 @@ const socialLinks = [
           ))
         }
         </nav>
+      </div>
       </div>
     </div>
   </div>

@@ -10,7 +10,7 @@ export const site = {
   email: "careteam@aypgrooming.com",
   hours: "Mon–Sat: 8am–6pm",
   serviceArea:
-    "Madera, Fresno, Clovis, Visalia, Selma, Fowler, Kerman, Kingsburg, Orange Cove, Reedley, Dinuba, Tulare, Hanford, Saner, Parlier (California)",
+    "Madera, Fresno, Clovis, Visalia, Selma, Fowler, Kerman, Kingsburg, Orange Cove, Reedley, Dinuba, Tulare, Hanford, Sanger, Parlier (California)",
   serviceAreaShort:
     "Madera, Fresno, Clovis, Visalia, Selma, and surrounding Central Valley communities",
   social: {

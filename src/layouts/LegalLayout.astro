@@ -1,0 +1,70 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  lastUpdated?: string;
+}
+
+const { title, description, lastUpdated = "October 8, 2026" } = Astro.props;
+---
+
+<BaseLayout title={`${title} | ${site.shortName}`} description={description}>
+  <div class="flex min-h-screen flex-col bg-surface">
+    <Header />
+    <main class="flex-1">
+      <section class="section-pad bg-brand-soft md:!px-10 md:!py-14">
+        <div class="mx-auto max-w-3xl text-center">
+          <h1 class="section-heading text-ink">{title}</h1>
+          <p class="type-caption mt-3 text-ink/70">Last updated: {lastUpdated}</p>
+        </div>
+      </section>
+      <section class="section-pad md:!px-10 md:!py-16">
+        <div class="legal-prose mx-auto max-w-3xl">
+          <slot />
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .legal-prose :global(h2) {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-prose :global(p),
+  .legal-prose :global(li) {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: color-mix(in srgb, var(--color-ink) 88%, transparent);
+  }
+
+  .legal-prose :global(ul) {
+    margin-top: 0.75rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
+  .legal-prose :global(p + p) {
+    margin-top: 1rem;
+  }
+
+  .legal-prose :global(a) {
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

@@ -1,45 +1,18 @@
 ---
-const galleryImages = [
-  {
-    src: "/images/hero.jpg",
-    alt: "Groomer caring for a pet inside the mobile grooming van",
-  },
-  {
-    src: "/images/service-dog-grooming.jpg",
-    alt: "Dog being groomed during a mobile visit",
-  },
-  {
-    src: "/images/service-cat-grooming.jpg",
-    alt: "Cat grooming service",
-  },
-  {
-    src: "/images/after-1.jpg",
-    alt: "Dog after a fresh groom with bandana",
-  },
-  {
-    src: "/images/after-2.jpg",
-    alt: "Dog after bath and blowout",
-  },
-  {
-    src: "/images/service-specialty-addons.jpg",
-    alt: "Specialty grooming add-on service",
-  },
-];
+import { galleryImages } from "../data/gallery";
+
+const homeGalleryImages = galleryImages.slice(0, 6);
 ---
 
 <section id="gallery" class="section-pad bg-surface md:!px-10 md:!py-20">
   <div class="mx-auto max-w-6xl text-center">
     <h2 class="section-heading text-ink">Gallery</h2>
-    <p class="type-lead mx-auto mt-4 max-w-xl text-ink/90">
-      A peek at happy pets and mobile grooms.
-      <span class="mt-2 block">Photos from across the Central Valley.</span>
-    </p>
 
     <div
       class="mt-10 grid w-full grid-cols-1 gap-8 sm:mt-12 md:grid-cols-3 md:gap-4 lg:gap-5"
     >
       {
-        galleryImages.map((item, index) => (
+        homeGalleryImages.map((item, index) => (
           <figure
             class:list={[
               "overflow-hidden rounded-2xl shadow-lg md:rounded-3xl md:shadow-none",
@@ -61,7 +34,7 @@ const galleryImages = [
     </div>
 
     <a
-      href="#gallery"
+      href="/gallery"
       class="font-body btn-cta mt-10 bg-brand text-surface hover:bg-brand-dark sm:mt-12"
     >
       See Full Gallery
