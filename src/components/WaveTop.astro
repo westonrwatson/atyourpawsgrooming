@@ -1,0 +1,21 @@
+---
+interface Props {
+  fill: string;
+  class?: string;
+}
+
+const { fill, class: className = "" } = Astro.props;
+---
+
+<div class:list={["block w-full leading-[0]", className]} aria-hidden="true">
+  <svg
+    viewBox="0 0 1440 90"
+    preserveAspectRatio="none"
+    class="block h-12 w-full md:h-[3.75rem]"
+  >
+    <path
+      fill={fill}
+      d="M0,0 L1440,0 L1440,52 C1200,88 960,20 720,52 C480,84 240,28 0,56 Z"
+    ></path>
+  </svg>
+</div>

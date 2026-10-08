@@ -1,0 +1,67 @@
+---
+import { site } from "../data/site";
+---
+
+<section id="about" class="bg-surface px-4 py-14 md:px-10 md:py-20">
+  <div class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-12">
+    <div class="order-2 md:order-1">
+      <h2 class="font-display text-3xl text-ink md:text-4xl lg:text-5xl">About Us</h2>
+      <p class="font-body mt-6 text-base font-light leading-relaxed text-ink md:text-lg">
+        {site.name} brings full-service grooming to your driveway across California's
+        Central Valley. We built our mobile salon so pets get calm, one-on-one care and
+        families skip the stress of a busy grooming shop.
+      </p>
+      <p class="font-body mt-4 text-base font-light leading-relaxed text-ink md:text-lg">
+        Every visit is tailored to your pet, from nervous cats to high-energy dogs. Our
+        team focuses on safe handling, clear communication, and results you can see and
+        feel when your best friend comes back to you.
+      </p>
+      <p class="font-body mt-4 text-base font-light leading-relaxed text-ink md:text-lg">
+        Serving {site.serviceAreaShort}.
+      </p>
+
+      <ul class="font-body mt-8 space-y-3 text-sm font-light text-ink md:text-base">
+        <li>
+          <span class="font-normal">Phone:</span>
+          <a href={site.phoneHref} class="ml-2 hover:opacity-80">{site.phone}</a>
+        </li>
+        <li>
+          <span class="font-normal">Email:</span>
+          <a href={`mailto:${site.email}`} class="ml-2 hover:opacity-80">{site.email}</a>
+        </li>
+        <li>
+          <span class="font-normal">Hours:</span>
+          <span class="ml-2">{site.hours}</span>
+        </li>
+      </ul>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={site.bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-brand font-body inline-flex rounded-full px-8 py-3 text-base font-normal"
+        >
+          Book Appointment
+        </a>
+        <a
+          href={site.phoneHref}
+          class="font-body inline-flex rounded-full border border-ink/20 bg-white px-8 py-3 text-base font-normal text-ink transition hover:bg-white/90"
+        >
+          Call Us
+        </a>
+      </div>
+    </div>
+
+    <div class="order-1 md:order-2">
+      <img
+        src="/images/hero.jpg"
+        alt="Groomer caring for a pet inside the mobile grooming van"
+        class="aspect-[4/5] w-full rounded-3xl object-cover object-center shadow-lg md:aspect-square"
+        loading="lazy"
+        width="1024"
+        height="683"
+      />
+    </div>
+  </div>
+</section>

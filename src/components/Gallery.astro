@@ -1,0 +1,38 @@
+---
+const colors = ["#108AAA", "#FC6DAB", "#F9A03F", "#28262C"] as const;
+
+const placeholders = Array.from({ length: 12 }, (_, index) => ({
+  color: colors[index % colors.length],
+}));
+---
+
+<section id="gallery" class="bg-surface px-4 py-14 md:px-10 md:py-20">
+  <div class="mx-auto max-w-6xl text-center">
+    <h2 class="font-display text-3xl text-ink md:text-4xl lg:text-5xl">Gallery</h2>
+    <p class="font-body mx-auto mt-4 max-w-xl text-base font-light text-ink/90 md:text-lg">
+      A peek at happy pets and mobile grooms across the Central Valley.
+    </p>
+
+    <div
+      class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5"
+    >
+      {
+        placeholders.map((item) => (
+          <div
+            class="aspect-square w-full rounded-2xl md:rounded-3xl"
+            style={`background-color: ${item.color}`}
+            role="img"
+            aria-label="Gallery placeholder"
+          />
+        ))
+      }
+    </div>
+
+    <a
+      href="#gallery"
+      class="font-body mt-12 inline-flex rounded-full bg-[#108AAA] px-8 py-3 text-base font-normal text-surface transition hover:bg-[#0d7894]"
+    >
+      See Full Gallery
+    </a>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+---
+import { site } from "../data/site";
+---
+
+<section id="home" class="bg-surface px-4 py-10 md:px-10 md:py-16">
+  <div
+    class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-12"
+  >
+    <div class="order-2 md:order-1">
+      <h1
+        class="font-display text-3xl font-normal leading-tight text-blue-brand md:text-4xl lg:text-[2.75rem]"
+      >
+        Expert Grooming for Dogs & Cats
+      </h1>
+      <p class="font-body mt-6 max-w-lg text-base font-light leading-relaxed text-blue-brand md:text-lg">
+        Stress-free, convenient, and professional care every visit.
+        <span class="mt-2 block">
+          Serving {site.serviceAreaShort}.
+        </span>
+      </p>
+      <a
+        href={site.bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-brand font-body mt-8 inline-flex rounded-full px-8 py-3 text-base font-normal"
+      >
+        Book Appointment
+      </a>
+    </div>
+
+    <div class="order-1 md:order-2">
+      <img
+        src="/images/hero.jpg"
+        alt="Groomer caring for a dog inside a mobile grooming van"
+        class="aspect-[4/3] w-full rounded-3xl object-cover object-center md:aspect-square md:min-h-[420px]"
+        width="1024"
+        height="683"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+---
+import { faqItems } from "../data/faq";
+import FAQIllustration from "./FAQIllustration.astro";
+import WaveTop from "./WaveTop.astro";
+---
+
+<section id="faq" class="bg-cream">
+  <WaveTop fill="#ffb4c0" />
+  <div class="px-4 pb-16 pt-16 md:px-8 md:pb-20 md:pt-20">
+    <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:gap-16">
+      <div class="order-2 lg:order-1">
+        <h2 class="font-display text-4xl font-bold leading-tight text-blue-dark">
+          Frequent Ask Qustions
+        </h2>
+        <div class="mt-8">
+          <FAQIllustration />
+        </div>
+      </div>
+
+      <div class="order-1 space-y-3 lg:order-2">
+        {
+          faqItems.map((item, index) => (
+            <details class="faq-item rounded-2xl bg-white px-5 py-4 shadow-sm" open={index === 0}>
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-base font-semibold text-blue-dark marker:content-none">
+                {item.question}
+                <span class="faq-chevron shrink-0 rounded-full bg-blue-primary/10 p-1 text-blue-primary">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </summary>
+              <p class="faq-answer mt-3 text-sm leading-relaxed text-blue-dark/75">{item.answer}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

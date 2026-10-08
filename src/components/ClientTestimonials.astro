@@ -1,0 +1,77 @@
+---
+import { homeTestimonials } from "../data/testimonials";
+
+const cardStyles = [
+  {
+    bg: "#FC6DAB",
+    text: "text-ink",
+    rotate: "-rotate-2",
+  },
+  {
+    bg: "#108AAA",
+    text: "text-surface",
+    rotate: "rotate-1 md:rotate-2",
+  },
+  {
+    bg: "#F9A03F",
+    text: "text-ink",
+    rotate: "-rotate-1",
+  },
+] as const;
+---
+
+<section id="testimonials" class="bg-[#ffd77d] px-4 py-14 md:px-10 md:py-20">
+  <div class="mx-auto max-w-6xl text-center">
+    <p class="font-body text-sm font-light uppercase tracking-[0.18em] text-ink/80">
+      Real pets, real smiles
+    </p>
+    <h2 class="font-display mt-2 text-3xl text-ink md:text-4xl lg:text-5xl">
+      What Our Clients Say
+    </h2>
+    <div class="mt-3 flex items-center justify-center gap-1" aria-label="5 star rating">
+      {
+        Array.from({ length: 5 }).map(() => (
+          <span class="font-body text-lg text-ink leading-none">★</span>
+        ))
+      }
+    </div>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-3 md:gap-6 lg:gap-8">
+      {
+        homeTestimonials.map((item, index) => {
+          const style = cardStyles[index % cardStyles.length];
+          return (
+            <blockquote
+              class:list={[
+                "relative rounded-3xl px-6 py-8 text-left shadow-lg transition hover:-translate-y-1 md:px-7 md:py-9",
+                style.rotate,
+                style.text,
+              ]}
+              style={`background-color: ${style.bg}`}
+            >
+              <span
+                class="font-display pointer-events-none absolute -top-4 left-5 text-5xl leading-none opacity-40"
+                aria-hidden="true"
+              >
+                "
+              </span>
+              <p class="font-body relative text-base font-light leading-relaxed md:text-lg">
+                {item.quote}
+              </p>
+              <footer class="font-body mt-6 border-t border-current/15 pt-4">
+                <cite class="not-italic">
+                  <span class="block text-sm font-normal">{item.author}</span>
+                  {item.pet && (
+                    <span class="mt-0.5 block text-xs font-light opacity-85">
+                      {item.pet}
+                    </span>
+                  )}
+                </cite>
+              </footer>
+            </blockquote>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

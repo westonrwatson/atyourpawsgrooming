@@ -1,0 +1,161 @@
+---
+const comparisons = [
+  {
+    title: "De-shed & Refresh",
+    before: "/images/before-1.jpg",
+    after: "/images/after-1.jpg",
+    beforeAlt: "Dog before de-shedding treatment",
+    afterAlt: "Dog after grooming with bandana",
+  },
+  {
+    title: "Bath & Blowout",
+    before: "/images/before-2.jpg",
+    after: "/images/after-2.jpg",
+    beforeAlt: "Dog before bath and grooming",
+    afterAlt: "Dog after bath in grooming tub",
+  },
+];
+---
+
+<section id="before-after" class="bg-[#28262C] px-4 py-14 md:px-10 md:py-20">
+  <div class="mx-auto max-w-6xl">
+    <div class="text-center">
+      <p
+        class="font-body text-sm font-light uppercase tracking-[0.2em] text-[#ffd77d]"
+      >
+        Transformations
+      </p>
+      <h2 class="font-display mt-3 text-3xl text-surface md:text-4xl lg:text-5xl">
+        Before & After
+      </h2>
+      <p class="font-body mx-auto mt-4 max-w-xl text-base font-light text-surface/85 md:text-lg">
+        Drag the slider to see the difference a professional mobile groom makes.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2 md:gap-10">
+      {
+        comparisons.map((item, index) => (
+          <figure class="ba-compare group" data-ba-compare>
+            <div
+              class="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] ring-2 ring-white/10"
+            >
+              <img
+                src={item.after}
+                alt={item.afterAlt}
+                class="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+              <div
+                class="ba-clip pointer-events-none absolute inset-y-0 left-0 overflow-hidden"
+                style="width: 50%"
+              >
+                <img
+                  src={item.before}
+                  alt={item.beforeAlt}
+                  class="ba-before-img absolute inset-0 h-full max-w-none object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <span
+                class="pointer-events-none absolute left-4 top-4 rounded-full bg-[#28262C]/75 px-3 py-1 font-body text-xs font-normal uppercase tracking-wide text-surface backdrop-blur-sm"
+              >
+                Before
+              </span>
+              <span
+                class="pointer-events-none absolute right-4 top-4 rounded-full bg-[#FC6DAB] px-3 py-1 font-body text-xs font-normal uppercase tracking-wide text-ink"
+              >
+                After
+              </span>
+
+              <div
+                class="ba-handle pointer-events-none absolute inset-y-0 z-20 w-0.5 -translate-x-1/2 bg-white shadow-[0_0_12px_rgba(255,255,255,0.8)]"
+                style="left: 50%"
+              >
+                <div
+                  class="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-[#108AAA] shadow-lg"
+                >
+                  <svg
+                    class="h-5 w-5 text-surface"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 8l-4 4 4 4M16 8l4 4-4 4"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <label class="sr-only" for={`ba-slider-${index}`}>
+                Compare before and after for {item.title}
+              </label>
+              <input
+                id={`ba-slider-${index}`}
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                class="ba-slider absolute inset-0 z-30 h-full w-full cursor-ew-resize opacity-0"
+              />
+            </div>
+            <figcaption
+              class="font-display mt-4 text-center text-xl text-[#ffd77d] md:text-2xl"
+            >
+              {item.title}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const initBeforeAfter = () => {
+    document.querySelectorAll("[data-ba-compare]").forEach((root) => {
+      if (!(root instanceof HTMLElement)) return;
+      if (root.dataset.baReady === "true") return;
+      root.dataset.baReady = "true";
+
+      const clip = root.querySelector(".ba-clip");
+      const slider = root.querySelector(".ba-slider");
+      const handle = root.querySelector(".ba-handle");
+      const beforeImg = root.querySelector(".ba-before-img");
+
+      if (
+        !(clip instanceof HTMLElement) ||
+        !(slider instanceof HTMLInputElement) ||
+        !(handle instanceof HTMLElement) ||
+        !(beforeImg instanceof HTMLImageElement)
+      ) {
+        return;
+      }
+
+      const syncBeforeWidth = () => {
+        beforeImg.style.width = `${root.offsetWidth}px`;
+      };
+
+      const setPosition = (value: number) => {
+        const percent = `${value}%`;
+        clip.style.width = percent;
+        handle.style.left = percent;
+      };
+
+      slider.addEventListener("input", () => {
+        setPosition(Number(slider.value));
+      });
+
+      syncBeforeWidth();
+      setPosition(Number(slider.value));
+      window.addEventListener("resize", syncBeforeWidth);
+    });
+  };
+
+  initBeforeAfter();
+  document.addEventListener("astro:page-load", initBeforeAfter);
+</script>

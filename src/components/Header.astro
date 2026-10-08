@@ -1,0 +1,100 @@
+---
+import { site } from "../data/site";
+
+const navLinks = [
+  { href: "#home", label: "Home", active: true },
+  { href: "#about", label: "About" },
+  { href: "#services", label: "Services" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+
+<header class="bg-surface">
+  <div class="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 py-5 md:px-10">
+    <a href="#home" class="justify-self-start text-center leading-none text-blue-brand">
+      <span class="block font-display text-[1.65rem] font-normal leading-none md:text-4xl">
+        AT YOUR PAWS
+      </span>
+      <span
+        class="font-body -mt-0.5 block text-base font-light uppercase leading-none tracking-normal md:text-lg"
+      >
+        Mobile Pet Grooming
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Main">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class:list={[
+              "font-body text-base font-light text-blue-brand",
+              link.active && "nav-link-active",
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href={site.bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-brand font-body hidden items-center justify-center gap-2 rounded-full px-7 py-2.5 text-base font-normal md:inline-flex md:justify-self-end"
+    >
+      Book Appointment
+    </a>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="col-start-3 flex h-10 w-10 justify-self-end flex-col items-center justify-center gap-1.5 rounded-lg border border-blue-brand/20 md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <span class="block h-0.5 w-5 bg-blue-brand"></span>
+      <span class="block h-0.5 w-5 bg-blue-brand"></span>
+      <span class="block h-0.5 w-5 bg-blue-brand"></span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-blue-brand/15 px-4 pb-4 md:hidden">
+    <nav class="flex flex-col gap-2 pt-3" aria-label="Mobile">
+      {
+        navLinks.map((link) => (
+          <a href={link.href} class="mobile-nav-link font-body rounded-lg px-3 py-2 font-light text-blue-brand">
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href={site.bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-brand mobile-nav-link font-body mt-1 rounded-full px-4 py-3 text-center text-sm font-normal"
+      >
+        Book Appointment
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  toggle?.addEventListener("click", () => {
+    const open = menu?.classList.toggle("hidden") === false;
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu?.classList.add("hidden");
+      toggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+</script>

@@ -1,0 +1,30 @@
+---
+import { homeServices } from "../data/services";
+import { site } from "../data/site";
+import ServiceCard from "./ServiceCard.astro";
+---
+
+<section id="services" class="bg-[#F7B1CF] px-4 py-14 md:px-10 md:py-20">
+  <div class="mx-auto max-w-6xl text-center">
+    <h2 class="font-display text-3xl text-ink md:text-4xl lg:text-5xl">
+      Our Services
+    </h2>
+    <p class="font-body mx-auto mt-4 max-w-2xl text-base font-light leading-relaxed text-ink md:text-lg">
+      Professional grooming for dogs and cats at your door, so your pet stays calm
+      and you never have to leave home.
+    </p>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3 md:gap-8">
+      {homeServices.map((service) => <ServiceCard service={service} />)}
+    </div>
+
+    <a
+      href={site.bookingUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-body mt-12 inline-flex rounded-full bg-white px-8 py-3 text-base font-normal text-[#FC6DAB] transition hover:bg-white/90"
+    >
+      See Pricing
+    </a>
+  </div>
+</section>

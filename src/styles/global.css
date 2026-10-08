@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pink-soft: #ffb4c0;
+  --color-pink-hero: #ffb4c0;
+  --color-ink: #28262c;
+  --color-blue-brand: #28262c;
+  --color-blue-brand-dark: #1f1d22;
+  --color-blue-primary: #28262c;
+  --color-blue-stats: #28262c;
+  --color-blue-dark: #28262c;
+  --color-blue-footer: #243e9b;
+  --color-orange-cta: #f9a03f;
+  --color-orange-cta-dark: #e8922f;
+  --color-cream: #fffbe6;
+  --color-surface: #f2f4f3;
+  --font-display: "Luckiest Guy", cursive;
+  --font-body: "Poppins", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  background-color: #f2f4f3;
+  color: #28262c;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+.contact-pattern {
+  background-color: var(--color-blue-primary);
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='10' cy='10' r='2'/%3E%3Cpath d='M40 14c-1.5 1.5-2 3-2 4.5a2 2 0 004 0c0-1.5-.5-3-2-4.5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.faq-item[open] {
+  background-color: var(--color-orange-cta);
+}
+
+.faq-item[open] summary {
+  color: var(--color-ink);
+}
+
+.faq-item[open] .faq-answer {
+  color: rgb(40 38 44 / 0.85);
+}
+
+.faq-item[open] .faq-chevron {
+  color: var(--color-ink);
+  background-color: rgb(40 38 44 / 0.12);
+}
+
+.btn-brand {
+  background-color: var(--color-orange-cta);
+  color: var(--color-ink);
+  font-weight: 400;
+  transition: background-color 0.2s ease;
+}
+
+.btn-brand:hover {
+  background-color: var(--color-orange-cta-dark);
+}
+
+.btn-brand:active {
+  background-color: #d88428;
+}
+
+.nav-link-active {
+  text-decoration: underline;
+  text-decoration-color: var(--color-blue-brand);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
