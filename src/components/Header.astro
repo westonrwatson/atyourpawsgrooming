@@ -5,30 +5,94 @@ const navLinks = [
   { href: "#home", label: "Home", active: true },
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#services", label: "Prices" },
 ];
 ---
 
-<header class="bg-surface">
-  <div class="mx-auto grid max-w-6xl grid-cols-[1fr_auto_1fr] items-center px-4 py-5 md:px-10">
-    <a href="#home" class="justify-self-start text-center leading-none text-blue-brand">
-      <span class="block font-display text-[1.65rem] font-normal leading-none md:text-4xl">
-        AT YOUR PAWS
-      </span>
-      <span
-        class="font-body -mt-0.5 block text-base font-light uppercase leading-none tracking-normal md:text-lg"
-      >
-        Mobile Pet Grooming
+<header class="sticky top-0 z-50 border-b border-ink/5 bg-surface/95 backdrop-blur-sm">
+  <div class="section-pad !py-3 md:!px-10 md:!py-5">
+    <div
+      class="relative z-[60] mx-auto grid max-w-6xl grid-cols-[1fr_auto] items-center gap-3"
+    >
+    <a
+      href="#home"
+      class="flex min-w-0 items-center gap-2.5 justify-self-start leading-none text-ink sm:gap-3"
+    >
+      <img
+        src="/images/logo.png"
+        alt=""
+        class="h-12 w-auto shrink-0 sm:h-14 md:h-16"
+        width="160"
+        height="64"
+        decoding="async"
+      />
+      <span class="min-w-0">
+        <span class="type-logo-display block">AT YOUR PAWS</span>
+        <span class="type-logo-tagline -mt-0.5 block tracking-normal">
+          Mobile Pet Grooming
+        </span>
       </span>
     </a>
 
-    <nav class="hidden items-center gap-8 md:flex" aria-label="Main">
+    <div class="hidden items-center justify-end gap-8 md:flex">
+      <nav class="flex items-center justify-end gap-8" aria-label="Main">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "type-body text-ink",
+                link.active && "nav-link-active",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <a
+        href={site.bookingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-brand type-body inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-7 py-2.5 font-normal"
+      >
+        Book Appointment
+      </a>
+    </div>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="menu-toggle relative flex h-11 w-11 shrink-0 items-center justify-center md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Open menu"
+    >
+      <span class="menu-toggle-bars" aria-hidden="true">
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+        <span class="menu-bar"></span>
+      </span>
+    </button>
+    </div>
+  </div>
+
+  <div
+    id="mobile-menu"
+    class="mobile-menu fixed inset-0 z-[55] flex min-h-dvh flex-col bg-surface md:hidden"
+    aria-hidden="true"
+  >
+    <nav
+      class="mobile-menu-nav flex flex-1 flex-col items-center justify-center gap-8 px-6 pt-20"
+      aria-label="Mobile"
+    >
       {
         navLinks.map((link) => (
           <a
             href={link.href}
             class:list={[
-              "font-body text-base font-light text-blue-brand",
+              "mobile-nav-link section-heading font-normal text-ink",
               link.active && "nav-link-active",
             ]}
           >
@@ -38,63 +102,118 @@ const navLinks = [
       }
     </nav>
 
-    <a
-      href={site.bookingUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="btn-brand font-body hidden items-center justify-center gap-2 rounded-full px-7 py-2.5 text-base font-normal md:inline-flex md:justify-self-end"
-    >
-      Book Appointment
-    </a>
-
-    <button
-      type="button"
-      id="menu-toggle"
-      class="col-start-3 flex h-10 w-10 justify-self-end flex-col items-center justify-center gap-1.5 rounded-lg border border-blue-brand/20 md:hidden"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-      aria-label="Open menu"
-    >
-      <span class="block h-0.5 w-5 bg-blue-brand"></span>
-      <span class="block h-0.5 w-5 bg-blue-brand"></span>
-      <span class="block h-0.5 w-5 bg-blue-brand"></span>
-    </button>
-  </div>
-
-  <div id="mobile-menu" class="hidden border-t border-blue-brand/15 px-4 pb-4 md:hidden">
-    <nav class="flex flex-col gap-2 pt-3" aria-label="Mobile">
-      {
-        navLinks.map((link) => (
-          <a href={link.href} class="mobile-nav-link font-body rounded-lg px-3 py-2 font-light text-blue-brand">
-            {link.label}
-          </a>
-        ))
-      }
+    <div class="mobile-menu-cta shrink-0 px-6 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-4">
       <a
         href={site.bookingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-brand mobile-nav-link font-body mt-1 rounded-full px-4 py-3 text-center text-sm font-normal"
+        class="btn-brand mobile-nav-link font-body btn-cta !max-w-none"
       >
         Book Appointment
       </a>
-    </nav>
+    </div>
   </div>
 </header>
+
+<style>
+  .menu-toggle-bars {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 22px;
+  }
+
+  .menu-bar {
+    display: block;
+    height: 2px;
+    width: 100%;
+    border-radius: 1px;
+    background-color: var(--color-ink);
+    transition:
+      transform 0.25s ease,
+      opacity 0.2s ease;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .mobile-menu {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .mobile-menu.is-open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mobile-nav-link {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .mobile-menu.is-open .mobile-nav-link {
+    animation: mobile-nav-in 0.45s ease forwards;
+  }
+
+  .mobile-menu.is-open .mobile-menu-nav .mobile-nav-link:nth-child(1) {
+    animation-delay: 0.08s;
+  }
+  .mobile-menu.is-open .mobile-menu-nav .mobile-nav-link:nth-child(2) {
+    animation-delay: 0.14s;
+  }
+  .mobile-menu.is-open .mobile-menu-nav .mobile-nav-link:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .mobile-menu.is-open .mobile-menu-nav .mobile-nav-link:nth-child(4) {
+    animation-delay: 0.26s;
+  }
+
+  .mobile-menu.is-open .mobile-menu-cta .mobile-nav-link {
+    animation-delay: 0.32s;
+  }
+
+  @keyframes mobile-nav-in {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
 
 <script>
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
 
+  function setMenuOpen(open: boolean) {
+    menu?.classList.toggle("is-open", open);
+    menu?.setAttribute("aria-hidden", String(!open));
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    document.body.classList.toggle("overflow-hidden", open);
+  }
+
   toggle?.addEventListener("click", () => {
-    const open = menu?.classList.toggle("hidden") === false;
-    toggle.setAttribute("aria-expanded", String(open));
+    const open = !menu?.classList.contains("is-open");
+    setMenuOpen(open);
   });
 
   document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      menu?.classList.add("hidden");
-      toggle?.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", () => setMenuOpen(false));
   });
 </script>

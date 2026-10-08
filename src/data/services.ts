@@ -12,41 +12,48 @@ export const homeServices: Service[] = [
   {
     title: "Dog Grooming",
     description:
-      "Bath, haircut, nail trim, and ear cleaning in your driveway.",
+      "Complete dog grooming including bath, haircut, nail trimming, and ear cleaning in the comfort of your driveway.",
     image: "/images/service-dog-grooming.jpg",
     imageAlt: "Happy dog after grooming",
     imageObjectPosition: "22% center",
   },
   {
     title: "Cat Grooming",
-    description: "Gentle, stress-free grooming for anxious felines.",
+    description:
+      "Gentle, stress-free cat grooming with specialized handling for anxious felines.",
     image: "/images/service-cat-grooming.jpg",
     imageAlt: "Cat grooming professional",
   },
   {
-    title: "Specialty Add-ons",
-    description:
-      "Pet-safe nail polish and creative hair dye for a fun pop of color.",
-    image: "/images/service-specialty-addons.jpg",
-    imageAlt: "Dog with colorful hair dye",
-  },
-];
-
-export const allServices: Service[] = [
-  ...homeServices,
-  {
     title: "Nail Trimming",
     description: "Quick and safe nail trimming for dogs and cats.",
-    image:
-      "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=520&fit=crop",
+    image: "/images/service-cat-grooming.jpg",
     imageAlt: "Pet nail trimming",
+    imageObjectPosition: "50% 30%",
   },
   {
     title: "De-shedding Treatments",
     description:
-      "Reduce shedding and keep your pet's coat healthy with specialized treatments.",
-    image:
-      "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=520&fit=crop",
+      "Reduce shedding and keep your pet's coat healthy with specialized de-shedding treatments.",
+    image: "/images/before-1.jpg",
     imageAlt: "De-shedding treatment",
+    imageObjectPosition: "center center",
+  },
+  {
+    title: "Nail Polish & Hair Dye",
+    description:
+      "Add flair to your pet's look with safe nail polish and creative hair dye options.",
+    image: "/images/service-specialty-addons.jpg",
+    imageAlt: "Dog with colorful hair dye",
+  },
+  {
+    title: "Personalized Care",
+    description:
+      "Every pet receives one-on-one attention for a calm, comfortable experience.",
+    image: "/images/hero.jpg",
+    imageAlt: "Personalized mobile pet grooming care",
+    imageObjectPosition: "55% center",
   },
 ];
+
+export const allServices: Service[] = [...homeServices];

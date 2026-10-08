@@ -6,42 +6,78 @@ const steps = [
     title: "Book an Appointment",
     description:
       "Schedule online or call us to pick a time that works for you. We confirm the appointment and note your pet's breed and grooming needs.",
+    icon: "phone" as const,
   },
   {
     title: "We Come to You",
     description:
       "Our mobile grooming van comes to your driveway. We bathe, trim, and finish your pet's groom one-on-one, with no crowded salon.",
+    icon: "van" as const,
   },
   {
     title: "A Fresh, Happy Pet",
     description:
       "When the groom is complete, your dog or cat is clean, comfortable, and handed back to you, ready to relax at home.",
+    icon: "dog" as const,
   },
 ];
 ---
 
-<section id="how-it-works" class="bg-surface px-4 py-14 md:px-10 md:py-20">
+<section id="how-it-works" class="section-pad bg-brand-soft-dark md:!px-10 md:!py-20">
   <div class="mx-auto max-w-6xl text-center">
-    <h2 class="font-display text-3xl text-ink md:text-4xl lg:text-5xl">
-      How It Works
-    </h2>
-    <p class="font-body mx-auto mt-4 max-w-2xl text-base font-light text-ink/90 md:text-lg">
-      Mobile pet grooming in three easy steps, all from the comfort of home.
-    </p>
+    <h2 class="section-heading text-ink">How It Works</h2>
 
-    <div class="mt-12 grid gap-10 text-left md:grid-cols-3 md:gap-8 md:text-center lg:gap-12">
+    <div class="mt-10 grid gap-8 text-center md:mt-12 md:grid-cols-3 md:gap-8 lg:gap-12">
       {
-        steps.map((step, index) => (
+        steps.map((step) => (
           <div>
-            <p
-              class="font-body text-sm font-light uppercase tracking-wide text-ink/70"
+            <div
+              class="mx-auto flex h-[4.5rem] w-[4.5rem] items-center justify-center"
+              aria-hidden="true"
             >
-              Step {index + 1}
-            </p>
-            <h3 class="font-display mt-2 text-2xl text-ink md:text-3xl">
-              {step.title}
-            </h3>
-            <p class="font-body mt-4 text-base font-light leading-relaxed text-ink md:mx-auto md:max-w-xs">
+              {
+                step.icon === "phone" && (
+                  <svg
+                    class="h-14 w-14 text-ink"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.958l-1.293.97c-.135.101-.164.278-.066.412l2.299 2.299c.136.099.311.07.412-.066l.97-1.293a1.875 1.875 0 0 1 1.958-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                )
+              }
+              {
+                step.icon === "van" && (
+                  <img
+                    src="/images/logo.png"
+                    alt=""
+                    class="h-[3.25rem] w-auto max-w-full object-contain"
+                    width="120"
+                    height="48"
+                    decoding="async"
+                  />
+                )
+              }
+              {
+                step.icon === "dog" && (
+                  <img
+                    src="/images/how-it-works-dog.png"
+                    alt=""
+                    class="h-[4rem] w-[4rem] object-contain grayscale"
+                    width="112"
+                    height="112"
+                    decoding="async"
+                  />
+                )
+              }
+            </div>
+            <h3 class="type-card-title mt-4 text-ink md:mt-5">{step.title}</h3>
+            <p class="type-body mx-auto mt-3 max-w-xs text-ink sm:mt-4">
               {step.description}
             </p>
           </div>
@@ -53,7 +89,7 @@ const steps = [
       href={site.bookingUrl}
       target="_blank"
       rel="noopener noreferrer"
-      class="font-body mt-12 inline-flex rounded-full bg-[#108AAA] px-8 py-3 text-base font-normal text-surface transition hover:bg-[#0d7894]"
+      class="font-body btn-cta mt-10 bg-brand text-surface hover:bg-brand-dark md:mt-12"
     >
       Book Now
     </a>

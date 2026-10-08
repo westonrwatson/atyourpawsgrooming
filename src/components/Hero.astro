@@ -2,17 +2,15 @@
 import { site } from "../data/site";
 ---
 
-<section id="home" class="bg-surface px-4 py-10 md:px-10 md:py-16">
+<section id="home" class="section-pad bg-surface md:!px-10 md:!py-16">
   <div
-    class="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-12"
+    class="mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-2 md:gap-12"
   >
-    <div class="order-2 md:order-1">
-      <h1
-        class="font-display text-3xl font-normal leading-tight text-blue-brand md:text-4xl lg:text-[2.75rem]"
-      >
+    <div class="order-2 text-center md:order-1 md:text-left">
+      <h1 class="section-heading text-ink">
         Expert Grooming for Dogs & Cats
       </h1>
-      <p class="font-body mt-6 max-w-lg text-base font-light leading-relaxed text-blue-brand md:text-lg">
+      <p class="type-lead mx-auto mt-5 max-w-lg text-ink/90 md:mx-0 md:mt-6">
         Stress-free, convenient, and professional care every visit.
         <span class="mt-2 block">
           Serving {site.serviceAreaShort}.
@@ -22,7 +20,7 @@ import { site } from "../data/site";
         href={site.bookingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-brand font-body mt-8 inline-flex rounded-full px-8 py-3 text-base font-normal"
+        class="btn-brand font-body btn-cta mx-auto !mt-7 md:mx-0 md:!mt-8"
       >
         Book Appointment
       </a>
@@ -32,7 +30,7 @@ import { site } from "../data/site";
       <img
         src="/images/hero.jpg"
         alt="Groomer caring for a dog inside a mobile grooming van"
-        class="aspect-[4/3] w-full rounded-3xl object-cover object-center md:aspect-square md:min-h-[420px]"
+        class="aspect-[4/3] w-full max-h-[280px] rounded-2xl object-cover object-center sm:max-h-none sm:rounded-3xl md:aspect-square md:min-h-[420px]"
         width="1024"
         height="683"
         loading="eager"

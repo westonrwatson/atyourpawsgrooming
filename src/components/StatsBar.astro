@@ -6,50 +6,70 @@ const stats = [
 ];
 ---
 
-<section class="bg-[#ffd77d] py-6 md:py-7" aria-label="Highlights">
-  <div
-    class="mx-auto flex max-w-6xl flex-col items-center px-4 sm:flex-row sm:justify-center md:px-10"
-  >
-    {
-      stats.map((stat, index) => (
-        <div class="flex flex-col items-center sm:flex-row sm:items-center">
-          {
-            index > 0 && (
-              <>
-                <div
-                  class="my-4 h-px w-14 shrink-0 bg-ink/20 sm:hidden"
-                  aria-hidden="true"
-                />
-                <div
-                  class="mx-8 hidden h-12 w-px shrink-0 self-center bg-ink/20 sm:block md:mx-12 lg:mx-16"
-                  aria-hidden="true"
-                />
-              </>
-            )
-          }
-          <div class="inline-grid grid-cols-[auto_auto] items-center gap-x-3 px-4 sm:px-6 md:gap-x-4 lg:px-8">
+<section class="bg-brand-soft py-5 md:py-7" aria-label="Highlights">
+  <div class="section-pad mx-auto max-w-6xl !py-0 md:!px-10">
+    <div class="grid grid-cols-3 divide-x divide-brand/25 sm:hidden">
+      {
+        stats.map((stat) => (
+          <div class="flex flex-col items-center px-1 py-1 text-center">
             <p
-              class="font-display relative top-1 inline-flex items-center text-3xl leading-none text-ink md:top-1.5 md:text-4xl lg:text-5xl"
+              class="type-stat-value inline-flex max-w-full items-center text-brand"
               {...(stat.star ? { "aria-label": `${stat.value} stars` } : {})}
             >
               <span>{stat.value}</span>
               {
                 stat.star && (
-                  <span class="font-body ml-0.5 text-[0.7em] font-normal leading-none text-ink">
+                  <span class="font-body ml-0.5 text-[0.65em] font-normal leading-none text-brand">
                     ★
                   </span>
                 )
               }
             </p>
-            <div
-              class="font-body flex flex-col justify-center text-left text-sm font-light leading-[1.2] text-ink md:text-base"
-            >
-              <span>{stat.label[0]}</span>
-              <span>{stat.label[1]}</span>
+            <div class="type-caption mt-2 leading-tight text-brand">
+              <span class="block">{stat.label[0]}</span>
+              <span class="block">{stat.label[1]}</span>
             </div>
           </div>
-        </div>
-      ))
-    }
+        ))
+      }
+    </div>
+
+    <div class="hidden sm:flex sm:flex-row sm:items-center sm:justify-center">
+      {
+        stats.map((stat, index) => (
+          <div class="flex flex-row items-center">
+            {
+              index > 0 && (
+                <div
+                  class="mx-8 hidden h-12 w-px shrink-0 self-center bg-brand/25 sm:block md:mx-12 lg:mx-16"
+                  aria-hidden="true"
+                />
+              )
+            }
+            <div class="inline-grid grid-cols-[auto_auto] items-center gap-x-3 px-4 sm:px-6 md:gap-x-4 lg:px-8">
+              <p
+                class="type-stat-value relative top-1 inline-flex items-center text-brand md:top-1.5"
+                {...(stat.star ? { "aria-label": `${stat.value} stars` } : {})}
+              >
+                <span>{stat.value}</span>
+                {
+                  stat.star && (
+                    <span class="font-body ml-0.5 text-[0.7em] font-normal leading-none text-brand">
+                      ★
+                    </span>
+                  )
+                }
+              </p>
+              <div
+                class="type-small flex flex-col justify-center text-left leading-[1.2] text-brand"
+              >
+                <span>{stat.label[0]}</span>
+                <span>{stat.label[1]}</span>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
   </div>
 </section>

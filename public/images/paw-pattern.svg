@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="112" height="112" viewBox="0 0 112 112">
-  <image xlink:href="paw-print.png" x="38" y="38" width="36" height="36" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#108AAA" aria-hidden="true">
+  <path
+    d="M12 2c-2 2.5-3.5 4.5-3.5 7a3.5 3.5 0 007 0c0-2.5-1.5-4.5-3.5-7zM6.5 10.5A2.5 2.5 0 114.5 15a2.5 2.5 0 012-4.5zm11 0a2.5 2.5 0 10-2 4.5 2.5 2.5 0 002-4.5zM4 14.5a2 2 0 100 4 2 2 0 000-4zm16 0a2 2 0 100 4 2 2 0 000-4zM8.5 18a2.2 2.2 0 100 4.4 2.2 2.2 0 000-4.4zm7 0a2.2 2.2 0 100 4.4 2.2 2.2 0 000-4.4z"
+  />
 </svg>

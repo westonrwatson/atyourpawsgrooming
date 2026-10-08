@@ -17,28 +17,21 @@ const comparisons = [
 ];
 ---
 
-<section id="before-after" class="bg-[#28262C] px-4 py-14 md:px-10 md:py-20">
+<section id="before-after" class="section-pad bg-[#28262C] md:!px-10 md:!py-20">
   <div class="mx-auto max-w-6xl">
     <div class="text-center">
-      <p
-        class="font-body text-sm font-light uppercase tracking-[0.2em] text-[#ffd77d]"
-      >
-        Transformations
-      </p>
-      <h2 class="font-display mt-3 text-3xl text-surface md:text-4xl lg:text-5xl">
-        Before & After
-      </h2>
-      <p class="font-body mx-auto mt-4 max-w-xl text-base font-light text-surface/85 md:text-lg">
+      <h2 class="section-heading text-surface">Before & After</h2>
+      <p class="type-lead mx-auto mt-4 max-w-xl text-surface/85">
         Drag the slider to see the difference a professional mobile groom makes.
       </p>
     </div>
 
-    <div class="mt-12 grid gap-8 md:grid-cols-2 md:gap-10">
+    <div class="mt-10 grid gap-6 sm:mt-12 sm:gap-8 md:grid-cols-2 md:gap-10">
       {
         comparisons.map((item, index) => (
           <figure class="ba-compare group" data-ba-compare>
             <div
-              class="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] ring-2 ring-white/10"
+              class="relative aspect-[3/4] overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.35)] ring-2 ring-white/10 sm:aspect-[4/5] sm:rounded-3xl"
             >
               <img
                 src={item.after}
@@ -61,12 +54,12 @@ const comparisons = [
               </div>
 
               <span
-                class="pointer-events-none absolute left-4 top-4 rounded-full bg-[#28262C]/75 px-3 py-1 font-body text-xs font-normal uppercase tracking-wide text-surface backdrop-blur-sm"
+                class="type-caption pointer-events-none absolute left-3 top-3 rounded-full bg-[#28262C]/75 px-2.5 py-1 font-normal uppercase tracking-wide text-surface backdrop-blur-sm sm:left-4 sm:top-4 sm:px-3"
               >
                 Before
               </span>
               <span
-                class="pointer-events-none absolute right-4 top-4 rounded-full bg-[#FC6DAB] px-3 py-1 font-body text-xs font-normal uppercase tracking-wide text-ink"
+                class="type-caption pointer-events-none absolute right-3 top-3 rounded-full bg-brand px-2.5 py-1 font-normal uppercase tracking-wide text-surface sm:right-4 sm:top-4 sm:px-3"
               >
                 After
               </span>
@@ -76,7 +69,7 @@ const comparisons = [
                 style="left: 50%"
               >
                 <div
-                  class="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-[#108AAA] shadow-lg"
+                  class="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-white bg-brand shadow-lg sm:h-11 sm:w-11"
                 >
                   <svg
                     class="h-5 w-5 text-surface"
@@ -104,7 +97,7 @@ const comparisons = [
               />
             </div>
             <figcaption
-              class="font-display mt-4 text-center text-xl text-[#ffd77d] md:text-2xl"
+              class="type-card-title mt-4 text-center text-surface"
             >
               {item.title}
             </figcaption>

@@ -16,9 +16,9 @@ const {
 } = Astro.props;
 
 const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
-const titleColor = light ? "text-white" : "text-blue-dark";
-const bodyColor = light ? "text-white/90" : "text-blue-dark/70";
-const eyebrowColor = light ? "text-orange-cta" : "text-blue-dark";
+const titleColor = light ? "text-surface" : "text-ink";
+const bodyColor = light ? "text-surface/90" : "text-ink/70";
+const eyebrowColor = light ? "text-brand-light" : "text-brand";
 ---
 
 <div class:list={["max-w-2xl", alignClass]}>
